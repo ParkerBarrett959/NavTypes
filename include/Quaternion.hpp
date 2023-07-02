@@ -1,23 +1,18 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                         Quaternion Data Type                                     //
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                  // 
-// Author:      Parker Barrett                                                                      //
-// Overview:    Header file for the quaternion class.                                               //      //                                                                                                  //
-//                                                                                                  //
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+// Quaternion.hpp
+//
+// @Author: Parker Barrett
+// @Description: header only class implementation of quaternion class.
+//
 
 // Include Headers
 #pragma once
-#include <iostream>
 #include <cmath>
+#include <iostream>
 
 // Quaternion Class
 class Quaternion {
-
-    // Public Class Members/Functions
-    public:
-
-    // Private Class Members/Function
-    private:
+  // Public Class Members/Functions
+ public:
+  // Private Class Members/Function
+ private:
 };

@@ -1,11 +1,8 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                     Quaternion Class Unit Testing                                //
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                  // 
-// Author:      Parker Barrett                                                                      //
-// Overview:    Quaternion Class Unit Tests.                                                        //
-//                                                                                                  //
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+// QuaternionTest.hpp
+//
+// @Author: Parker Barrett
+// @Description: Quaternion class test file.
+//
 
 // NavTypes Includes
 #include "Quaternion.hpp"
