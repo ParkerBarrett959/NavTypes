@@ -49,3 +49,35 @@ TEST(Operators, Multiplication) {
     EXPECT_EQ(q3.getQ2(), 6.0);
     EXPECT_EQ(q3.getQ3(), 8.0);
 }
+
+// Test Addition Operator
+TEST(Operators, Addition) {
+    // Construct Quaternions
+    Quaternion q1(1.0, 2.0, 3.0, 4.0);
+    Quaternion q2(1.0, 2.0, 3.0, 4.0);
+
+    // Perform Addition
+    Quaternion q3 = q1 + q2;
+
+    // Assertions
+    EXPECT_EQ(q3.getQ0(), 2.0);
+    EXPECT_EQ(q3.getQ1(), 4.0);
+    EXPECT_EQ(q3.getQ2(), 6.0);
+    EXPECT_EQ(q3.getQ3(), 8.0);
+}
+
+// Test Subtraction Operator
+TEST(Operators, Subtraction) {
+    // Construct Quaternions
+    Quaternion q1(1.0, 2.0, 3.0, 4.0);
+    Quaternion q2(1.0, 2.0, 3.0, 4.0);
+
+    // Perform Subtraction
+    Quaternion q3 = q1 - q2;
+
+    // Assertions
+    EXPECT_EQ(q3.getQ0(), 0.0);
+    EXPECT_EQ(q3.getQ1(), 0.0);
+    EXPECT_EQ(q3.getQ2(), 0.0);
+    EXPECT_EQ(q3.getQ3(), 0.0);
+}

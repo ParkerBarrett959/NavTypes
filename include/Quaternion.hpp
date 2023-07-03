@@ -72,6 +72,24 @@ class Quaternion {
      */
     Quaternion operator*(Quaternion q) { return multiply(q); };
 
+    /* @+
+     * @Description: Quaternion addition operator.
+     * @Inputs:
+     *     q: Input quaternion - perform addition on current class
+     * @Outputs:
+     *     add(q): Performs private member addition function on current class members
+     */
+    Quaternion operator+(Quaternion q) { return add(q); };
+
+    /* @-
+     * @Description: Quaternion subtraction operator.
+     * @Inputs:
+     *     q: Input quaternion - perform subtraction on current class
+     * @Outputs:
+     *     subtract(q): Performs private member subtraction function on current class members
+     */
+    Quaternion operator-(Quaternion q) { return subtract(q); };
+
   private:
     /* @multiply
      * @Description: Quaternion multiplication function.
@@ -97,6 +115,56 @@ class Quaternion {
         Quaternion qOut(q0, q1, q2, q3);
         return qOut;
     };
+
+    /* @add
+     * @Description: Quaternion addition function.
+     * @Inputs:
+     *     q: Input quaternion
+     * @Outputs:
+     *     qOut: Output quaternion result - qOut = q_ + q
+     */
+    Quaternion add(Quaternion q) {
+        // Get Input Quaternion Elements
+        double q0In = q.getQ0();
+        double q1In = q.getQ1();
+        double q2In = q.getQ2();
+        double q3In = q.getQ3();
+
+        // Perform Multiplication
+        double q0 = q0_ + q0In;
+        double q1 = q1_ + q1In;
+        double q2 = q2_ + q2In;
+        double q3 = q3_ + q3In;
+
+        // Define Output Quaternion and Return
+        Quaternion qOut(q0, q1, q2, q3);
+        return qOut;
+    }
+
+    /* @subtract
+     * @Description: Quaternion subtraction function.
+     * @Inputs:
+     *     q: Input quaternion
+     * @Outputs:
+     *     qOut: Output quaternion result - qOut = q_ - q
+     */
+    Quaternion subtract(Quaternion q) {
+        // Get Input Quaternion Elements
+        double q0In = q.getQ0();
+        double q1In = q.getQ1();
+        double q2In = q.getQ2();
+        double q3In = q.getQ3();
+
+        // Perform Multiplication
+        double q0 = q0_ - q0In;
+        double q1 = q1_ - q1In;
+        double q2 = q2_ - q2In;
+        double q3 = q3_ - q3In;
+
+        // Define Output Quaternion and Return
+        Quaternion qOut(q0, q1, q2, q3);
+        return qOut;
+    }
 
     // Quaternion Elements
     double q0_, q1_, q2_, q3_;
