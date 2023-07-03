@@ -63,7 +63,41 @@ class Quaternion {
      */
     double getQ3() { return q3_; };
 
+    /* @*
+     * @Description: Quaternion multiplication operator.
+     * @Inputs:
+     *     q: Input quaternion - perform right multiplication on current class
+     * @Outputs:
+     *     multiply(q): Performs private member multiply function on current class members
+     */
+    Quaternion operator*(Quaternion q) { return multiply(q); };
+
   private:
+    /* @multiply
+     * @Description: Quaternion multiplication function.
+     * @Inputs:
+     *     q: Input quaternion
+     * @Outputs:
+     *     qOut: Output quaternion result - qOut = q_ * q
+     */
+    Quaternion multiply(Quaternion q) {
+        // Get Input Quaternion Elements
+        double q0In = q.getQ0();
+        double q1In = q.getQ1();
+        double q2In = q.getQ2();
+        double q3In = q.getQ3();
+
+        // Perform Multiplication
+        double q0 = q0_ * q0In - q1_ * q1In - q2_ * q2In - q3_ * q3In;
+        double q1 = q0_ * q1In + q1_ * q0In + q2_ * q3In - q3_ * q2In;
+        double q2 = q0_ * q2In - q1_ * q3In + q2_ * q0In + q3_ * q1In;
+        double q3 = q0_ * q3In + q1_ * q2In - q2_ * q1In + q3_ * q0In;
+
+        // Set Quaternion Outputs and Return
+        Quaternion qOut(q0, q1, q2, q3);
+        return qOut;
+    };
+
     // Quaternion Elements
     double q0_, q1_, q2_, q3_;
 };
