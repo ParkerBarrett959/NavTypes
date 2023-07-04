@@ -81,3 +81,18 @@ TEST(Operators, Subtraction) {
     EXPECT_EQ(q3.getQ2(), 0.0);
     EXPECT_EQ(q3.getQ3(), 0.0);
 }
+
+// Test Normalize Quaternion
+TEST(Normalize, Normalize) {
+    // Construct Non-Unit Length Quaternion
+    Quaternion q(1.0, 2.0, 3.0, 4.0);
+
+    // Normalize Quaternion
+    q.normalize();
+
+    // Assertions
+    EXPECT_NEAR(q.getQ0(), 0.182574, 1e-6);
+    EXPECT_NEAR(q.getQ1(), 0.365148, 1e-6);
+    EXPECT_NEAR(q.getQ2(), 0.547723, 1e-6);
+    EXPECT_NEAR(q.getQ3(), 0.730297, 1e-6);
+}

@@ -90,6 +90,22 @@ class Quaternion {
      */
     Quaternion operator-(Quaternion q) { return subtract(q); };
 
+    /* @normalize
+     * @Description: Force quaternion to be of unit length
+     * @Inputs:
+     * @Outputs:
+     */
+    void normalize() {
+        // Compute Quaternion Magnitude
+	double mag = magnitude();
+
+	// Normalize Elements
+	q0_ /= mag;
+	q1_ /= mag;
+	q2_ /= mag;
+	q3_ /= mag;
+    }
+
   private:
     /* @multiply
      * @Description: Quaternion multiplication function.
@@ -165,6 +181,13 @@ class Quaternion {
         Quaternion qOut(q0, q1, q2, q3);
         return qOut;
     }
+
+    /* @magnitude
+     * @Description: Compute magnitude of quaternion.
+     * @Inputs:
+     * @Outputs:
+     */
+    double magnitude() { return std::sqrt(q0_*q0_ + q1_*q1_ + q2_*q2_ + q3_*q3_); };
 
     // Quaternion Elements
     double q0_, q1_, q2_, q3_;
