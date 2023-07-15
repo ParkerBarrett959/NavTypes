@@ -25,7 +25,8 @@ set(HEADER_LIST ${PROJECT_SOURCE_DIR}/include/Quaternion.hpp)
 # Unit Testing Build
 enable_testing()
 add_executable( test_navtypes ${PROJECT_SOURCE_DIR}/test/testMain.cpp 
-	                      ${PROJECT_SOURCE_DIR}/test/QuaternionTest.cpp ${HEADER_LIST})
+	                      ${PROJECT_SOURCE_DIR}/test/QuaternionTest.cpp
+			      ${PROJECT_SOURCE_DIR}/test/MatrixTest.cpp ${HEADER_LIST})
 target_link_libraries(
   test_navtypes
   GTest::gtest_main
