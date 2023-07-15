@@ -55,3 +55,38 @@ TEST(Constructor, Args) {
     EXPECT_EQ(m(1, 1), 1.5);
     EXPECT_EQ(m(1, 2), 1.5);
 }
+
+// Test Scalar Add
+TEST(Addition, Scalar) {
+    // Construct Initial Matrix
+    Matrix m(2, 3, 1.5);
+
+    // Add Scalar
+    m = m + 0.25;
+
+    // Value Assertions
+    EXPECT_EQ(m(0, 0), 1.75);
+    EXPECT_EQ(m(0, 1), 1.75);
+    EXPECT_EQ(m(0, 2), 1.75);
+    EXPECT_EQ(m(1, 0), 1.75);
+    EXPECT_EQ(m(1, 1), 1.75);
+    EXPECT_EQ(m(1, 2), 1.75);
+}
+
+// Test Matrix Add
+TEST(Addition, Matrix) {
+    // Construct Initial Matrices
+    Matrix m(2, 3, 1.5);
+    Matrix m2(2, 3, 0.25);
+
+    // Add Scalar
+    m = m + m2;
+
+    // Value Assertions
+    EXPECT_EQ(m(0, 0), 1.75);
+    EXPECT_EQ(m(0, 1), 1.75);
+    EXPECT_EQ(m(0, 2), 1.75);
+    EXPECT_EQ(m(1, 0), 1.75);
+    EXPECT_EQ(m(1, 1), 1.75);
+    EXPECT_EQ(m(1, 2), 1.75);
+}
