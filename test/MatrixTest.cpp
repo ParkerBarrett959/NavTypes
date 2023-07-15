@@ -13,6 +13,16 @@
 // Test Constructor - No Args
 TEST(Constructor, NoArgs) {
     // Construct Matrix
+    Matrix m;
+
+    // Size Assertions
+    EXPECT_EQ(m.rows(), 0);
+    EXPECT_EQ(m.cols(), 0);
+}
+
+// Test Constructor - No Value Args
+TEST(Constructor, NoValueArgs) {
+    // Construct Matrix
     Matrix m(2, 3);
 
     // Size Assertions

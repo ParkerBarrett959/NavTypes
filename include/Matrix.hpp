@@ -22,9 +22,9 @@ class Matrix {
      *     init_val: Initial value for matrix elements
      * @Outputs:
      */
-    Matrix(int n_rows, int n_cols, double init_val = 0.0) {
+    Matrix(int n_rows = 0, int n_cols = 0, double init_val = 0.0) {
         // Verify Input Dimensions are Valid
-        if (n_rows < 1 || n_cols < 1) {
+        if (n_rows < 0 || n_cols < 0) {
             return;
         }
 
