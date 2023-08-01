@@ -143,6 +143,53 @@ class Matrix {
         return mOut;
     };
 
+    /* @*
+     * @Description: Matrix scalar multiplication operator.
+     * @Inputs:
+     *     val: Value to multiply each element of matrix
+     * @Outputs:
+     *     mOut: Output Matrix
+     */
+    Matrix operator*(double val) {
+        // Set Output Matrix
+        Matrix mOut(n_rows_, n_cols_);
+
+        // Loop over Elements and Multiply Scalar
+        for (int i = 0; i < n_rows_; i++) {
+            for (int j = 0; j < n_cols_; j++) {
+                mOut(i,j) = m_[i][j] * val;
+            }
+        }
+        return mOut;
+    };
+
+    /* @*
+     * @Description: Matrix multiplication operator.
+     * @Inputs:
+     *     mIn: Matrix to multiply existing matrix
+     * @Outputs:
+     *     mOut: Output Matrix
+     */
+    Matrix operator*(Matrix mIn) {
+        // Set Output Matrix
+        Matrix mOut(n_rows_, mIn.cols());
+
+        // Loop over Elements and Perform Column-Row  Multiplication
+	double temp = 0.0;
+        for (int i = 0; i < n_rows_; i++) {
+            for (int j = 0; j < mIn.cols(); j++) {
+		temp = 0.0;
+		for (int k = 0; k < n_cols_; k++) {
+                    temp += m_[i][k] * mIn(k,j);
+		}
+                mOut(i,j) = temp;
+            }
+        }
+        return mOut;
+    };
+
+    // TODO: Scalar Divide, Transpose, Inverse
+
   private:
     // Matrix Class Members
     int n_rows_ = 0;

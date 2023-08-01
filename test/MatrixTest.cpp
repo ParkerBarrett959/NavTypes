@@ -125,3 +125,39 @@ TEST(Subtraction, Matrix) {
     EXPECT_EQ(m(1, 1), 1.25);
     EXPECT_EQ(m(1, 2), 1.25);
 }
+
+// Test Scalar Multiplication
+TEST(Multiplication, Scalar) {
+    // Construct Initial Matrix
+    Matrix m(2, 3, 1.5);
+
+    // Multiply Scalar
+    m = m * 0.5;
+
+    // Value Assertions
+    EXPECT_EQ(m(0, 0), 0.75);
+    EXPECT_EQ(m(0, 1), 0.75);
+    EXPECT_EQ(m(0, 2), 0.75);
+    EXPECT_EQ(m(1, 0), 0.75);
+    EXPECT_EQ(m(1, 1), 0.75);
+    EXPECT_EQ(m(1, 2), 0.75);
+}
+
+// Test Matrix Multiplication
+TEST(Multiplication, Matrix) {
+    // Construct Initial Matrices
+    Matrix m(2, 3, 1.5);
+    Matrix m2(3, 2, 2.0);
+
+    // Multiply Matrices
+    Matrix m3(2, 2);
+    m3 = m * m2;
+
+    // Value Assertions
+    EXPECT_EQ(m3(0, 0), 9.0);
+    EXPECT_EQ(m3(0, 1), 9.0);
+    EXPECT_EQ(m3(1, 0), 9.0);
+    EXPECT_EQ(m3(1, 1), 9.0);
+    EXPECT_EQ(m3.rows(), 2);
+    EXPECT_EQ(m3.cols(), 2);
+}
