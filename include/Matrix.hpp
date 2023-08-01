@@ -94,10 +94,50 @@ class Matrix {
         // Set Output Matrix
         Matrix mOut(n_rows_, n_cols_);
 
-        // Loop over Elements and Add Scalar
+        // Loop over Elements and Add Matrix Elements
         for (int i = 0; i < n_rows_; i++) {
             for (int j = 0; j < n_cols_; j++) {
                 mOut(i,j) = m_[i][j] + mIn(i,j);
+            }
+        }
+        return mOut;
+    };
+
+    /* @-
+     * @Description: Matrix scalar subtraction operator.
+     * @Inputs:
+     *     val: Value to subtract from each element of matrix
+     * @Outputs:
+     *     mOut: Output Matrix
+     */
+    Matrix operator-(double val) {
+        // Set Output Matrix
+        Matrix mOut(n_rows_, n_cols_);
+
+        // Loop over Elements and Subtract Scalar
+        for (int i = 0; i < n_rows_; i++) {
+            for (int j = 0; j < n_cols_; j++) {
+                mOut(i,j) = m_[i][j] - val;
+            }
+        }
+        return mOut;
+    };
+
+    /* @-
+     * @Description: Matrix subtraction operator.
+     * @Inputs:
+     *     mIn: Matrix to subtract from existing matrix
+     * @Outputs:
+     *     mOut: Output Matrix
+     */
+    Matrix operator-(Matrix mIn) {
+        // Set Output Matrix
+        Matrix mOut(n_rows_, n_cols_);
+
+        // Loop over Elements and Subtract Matrix Elements
+        for (int i = 0; i < n_rows_; i++) {
+            for (int j = 0; j < n_cols_; j++) {
+                mOut(i,j) = m_[i][j] - mIn(i,j);
             }
         }
         return mOut;

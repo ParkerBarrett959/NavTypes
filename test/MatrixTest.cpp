@@ -79,7 +79,7 @@ TEST(Addition, Matrix) {
     Matrix m(2, 3, 1.5);
     Matrix m2(2, 3, 0.25);
 
-    // Add Scalar
+    // Add Matrix
     m = m + m2;
 
     // Value Assertions
@@ -89,4 +89,39 @@ TEST(Addition, Matrix) {
     EXPECT_EQ(m(1, 0), 1.75);
     EXPECT_EQ(m(1, 1), 1.75);
     EXPECT_EQ(m(1, 2), 1.75);
+}
+
+// Test Scalar Subtraction
+TEST(Subtraction, Scalar) {
+    // Construct Initial Matrix
+    Matrix m(2, 3, 1.5);
+
+    // Subtract Scalar
+    m = m - 0.25;
+
+    // Value Assertions
+    EXPECT_EQ(m(0, 0), 1.25);
+    EXPECT_EQ(m(0, 1), 1.25);
+    EXPECT_EQ(m(0, 2), 1.25);
+    EXPECT_EQ(m(1, 0), 1.25);
+    EXPECT_EQ(m(1, 1), 1.25);
+    EXPECT_EQ(m(1, 2), 1.25);
+}
+
+// Test Matrix Subtraction
+TEST(Subtraction, Matrix) {
+    // Construct Initial Matrices
+    Matrix m(2, 3, 1.5);
+    Matrix m2(2, 3, 0.25);
+
+    // Subtract Matrices
+    m = m - m2;
+
+    // Value Assertions
+    EXPECT_EQ(m(0, 0), 1.25);
+    EXPECT_EQ(m(0, 1), 1.25);
+    EXPECT_EQ(m(0, 2), 1.25);
+    EXPECT_EQ(m(1, 0), 1.25);
+    EXPECT_EQ(m(1, 1), 1.25);
+    EXPECT_EQ(m(1, 2), 1.25);
 }
