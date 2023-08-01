@@ -161,3 +161,20 @@ TEST(Multiplication, Matrix) {
     EXPECT_EQ(m3.rows(), 2);
     EXPECT_EQ(m3.cols(), 2);
 }
+
+// Test Scalar Division
+TEST(Division, Scalar) {
+    // Construct Initial Matrix
+    Matrix m(2, 3, 1.5);
+
+    // Divide Scalar
+    m = m / 2.0;
+
+    // Value Assertions
+    EXPECT_EQ(m(0, 0), 0.75);
+    EXPECT_EQ(m(0, 1), 0.75);
+    EXPECT_EQ(m(0, 2), 0.75);
+    EXPECT_EQ(m(1, 0), 0.75);
+    EXPECT_EQ(m(1, 1), 0.75);
+    EXPECT_EQ(m(1, 2), 0.75);
+}

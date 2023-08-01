@@ -28,7 +28,7 @@ class Matrix {
             return;
         }
 
-        // Set Matriz Size and Values
+        // Set Matrix Size and Values
         n_rows_ = n_rows;
         n_cols_ = n_cols;
         m_.resize(n_rows);
@@ -188,7 +188,27 @@ class Matrix {
         return mOut;
     };
 
-    // TODO: Scalar Divide, Transpose, Inverse
+    /* @/
+     * @Description: Matrix scalar division operator.
+     * @Inputs:
+     *     val: Value to divide each element of matrix
+     * @Outputs:
+     *     mOut: Output Matrix
+     */
+    Matrix operator/(double val) {
+        // Set Output Matrix
+        Matrix mOut(n_rows_, n_cols_);
+
+        // Loop over Elements and Divide by Scalar
+        for (int i = 0; i < n_rows_; i++) {
+            for (int j = 0; j < n_cols_; j++) {
+                mOut(i,j) = m_[i][j] / val;
+            }
+        }
+        return mOut;
+    };
+
+    // TODO: Equality Constructor, Transpose, Inverse
 
   private:
     // Matrix Class Members
