@@ -56,6 +56,19 @@ TEST(Constructor, Args) {
     EXPECT_EQ(m(1, 2), 1.5);
 }
 
+// Test Constructor - Invalid Rows
+TEST(Constructor, InvalidRows) {
+    // Throw Exception
+    EXPECT_THROW({
+	try {
+            Matrix m(-2, 3);
+	} catch (const std::invalid_argument& e) {
+            EXPECT_STREQ("Row/column size must be greater than zero", e.what());
+	    throw;
+	}
+    }, std::invalid_argument);
+}
+
 // Test Equality Operator
 TEST(Operator, Equality) {
     // Construct Matrix

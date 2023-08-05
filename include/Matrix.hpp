@@ -25,7 +25,7 @@ class Matrix {
     Matrix(int n_rows = 0, int n_cols = 0, double init_val = 0.0) {
         // Verify Input Dimensions are Valid
         if (n_rows < 0 || n_cols < 0) {
-            return;
+	    throw std::invalid_argument("Row/column size must be greater than zero");
         }
 
         // Set Matrix Size and Values
