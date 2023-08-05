@@ -61,7 +61,12 @@ class Matrix {
      * @Outputs:
      *     m_[row][col]: Value of matrix at row/column index
      */
-    double& operator()(int row, int col) { return m_[row][col]; };
+    double& operator()(int row, int col) {
+        if ((row < 0) || (row > n_rows_-1) || (col < 0) || (col > n_cols_-1)) {
+           throw std::invalid_argument("Invalid Row/Column Specification");
+	}
+	return m_[row][col];
+    };
 
     /* @=
      * @Description: Matrix equality operator.

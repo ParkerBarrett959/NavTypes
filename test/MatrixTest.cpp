@@ -69,6 +69,19 @@ TEST(Constructor, InvalidRows) {
     }, std::invalid_argument);
 }
 
+// Test Constructor - Invalid Columns
+TEST(Constructor, InvalidCols) {
+    // Throw Exception
+    EXPECT_THROW({
+        try {
+            Matrix m(2, -3);
+        } catch (const std::invalid_argument& e) {
+            EXPECT_STREQ("Row/column size must be greater than zero", e.what());
+            throw;
+        }
+    }, std::invalid_argument);
+}
+
 // Test Equality Operator
 TEST(Operator, Equality) {
     // Construct Matrix
@@ -84,6 +97,52 @@ TEST(Operator, Equality) {
     EXPECT_EQ(mNew(1, 0), 1.5);
     EXPECT_EQ(mNew(1, 1), 1.5);
     EXPECT_EQ(mNew(1, 2), 1.5);
+}
+
+// Test Index Operator Exceptions
+TEST(IndexOperator, Exceptions) {
+    // Initialize Matrix
+    Matrix m(2,3);
+
+    // Throw Exception - Negative Row Index
+    EXPECT_THROW({
+        try {
+            double i = m(-2, 3);
+        } catch (const std::invalid_argument& e1) {
+            EXPECT_STREQ("Invalid Row/Column Specification", e1.what());
+            throw;
+        }
+    }, std::invalid_argument);
+
+    // Throw Exception - Row Index Outside Bounds
+    EXPECT_THROW({
+        try {
+            double i = m(2, 2);
+        } catch (const std::invalid_argument& e2) {
+            EXPECT_STREQ("Invalid Row/Column Specification", e2.what());
+            throw;
+        }
+    }, std::invalid_argument);
+
+    // Throw Exception - Negative Column Index
+    EXPECT_THROW({
+        try {
+            double i = m(1, -3);
+        } catch (const std::invalid_argument& e3) {
+            EXPECT_STREQ("Invalid Row/Column Specification", e3.what());
+            throw;
+        }
+    }, std::invalid_argument);
+
+    // Throw Exception - Column Index Outside Bounds
+    EXPECT_THROW({
+        try {
+            double i = m(1, 3);
+        } catch (const std::invalid_argument& e4) {
+            EXPECT_STREQ("Invalid Row/Column Specification", e4.what());
+            throw;
+        }
+    }, std::invalid_argument);
 }
 
 // Test Scalar Add
