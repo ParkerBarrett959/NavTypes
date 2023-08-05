@@ -83,7 +83,7 @@ TEST(Constructor, InvalidCols) {
 }
 
 // Test Equality Operator
-TEST(Operator, Equality) {
+TEST(EqualityOperator, SetValue) {
     // Construct Matrix
     Matrix m(2, 3, 1.5);
 
@@ -97,6 +97,21 @@ TEST(Operator, Equality) {
     EXPECT_EQ(mNew(1, 0), 1.5);
     EXPECT_EQ(mNew(1, 1), 1.5);
     EXPECT_EQ(mNew(1, 2), 1.5);
+}
+
+// Test Equality Operator - Different Sized Matrix Exception
+TEST(EqualityOperator, DifferentSizes) {
+    // Throw Exception
+    Matrix m1(3, 2, 1.0);
+    Matrix m2(2, 3);
+    EXPECT_THROW({
+        try {
+            m2 = m1;;
+        } catch (const std::invalid_argument& e) {
+            EXPECT_STREQ("Matrices must be same size", e.what());
+            throw;
+        }
+    }, std::invalid_argument);
 }
 
 // Test Index Operator Exceptions
@@ -180,6 +195,36 @@ TEST(Addition, Matrix) {
     EXPECT_EQ(m(1, 2), 1.75);
 }
 
+// Test Matrix Addition - Different Sized Rows
+TEST(Addition, DifferentSizedRows) {
+    // Throw Exception
+    Matrix m1(2, 3);
+    Matrix m2(1, 3);
+    EXPECT_THROW({
+        try {
+            Matrix m3 = m1 + m2;
+        } catch (const std::invalid_argument& e) {
+            EXPECT_STREQ("Matrices must be same size", e.what());
+            throw;
+        }
+    }, std::invalid_argument);
+}
+
+// Test Matrix Addition - Different Sized Columns
+TEST(Addition, DifferentSizedCols) {
+    // Throw Exception
+    Matrix m1(2, 3);
+    Matrix m2(2, 2);
+    EXPECT_THROW({
+        try {
+            Matrix m3 = m1 + m2;
+        } catch (const std::invalid_argument& e) {
+            EXPECT_STREQ("Matrices must be same size", e.what());
+            throw;
+        }
+    }, std::invalid_argument);
+}
+
 // Test Scalar Subtraction
 TEST(Subtraction, Scalar) {
     // Construct Initial Matrix
@@ -213,6 +258,36 @@ TEST(Subtraction, Matrix) {
     EXPECT_EQ(m(1, 0), 1.25);
     EXPECT_EQ(m(1, 1), 1.25);
     EXPECT_EQ(m(1, 2), 1.25);
+}
+
+// Test Matrix Subtraction - Different Sized Rows
+TEST(Subtraction, DifferentSizedRows) {
+    // Throw Exception
+    Matrix m1(2, 3);
+    Matrix m2(1, 3);
+    EXPECT_THROW({
+        try {
+            Matrix m3 = m1 - m2;
+        } catch (const std::invalid_argument& e) {
+            EXPECT_STREQ("Matrices must be same size", e.what());
+            throw;
+        }
+    }, std::invalid_argument);
+}
+
+// Test Matrix Subtraction - Different Sized Columns
+TEST(Subtraction, DifferentSizedCols) {
+    // Throw Exception
+    Matrix m1(2, 3);
+    Matrix m2(2, 2);
+    EXPECT_THROW({
+        try {
+            Matrix m3 = m1 - m2;
+        } catch (const std::invalid_argument& e) {
+            EXPECT_STREQ("Matrices must be same size", e.what());
+            throw;
+        }
+    }, std::invalid_argument);
 }
 
 // Test Scalar Multiplication
@@ -249,6 +324,36 @@ TEST(Multiplication, Matrix) {
     EXPECT_EQ(m3(1, 1), 9.0);
     EXPECT_EQ(m3.rows(), 2);
     EXPECT_EQ(m3.cols(), 2);
+}
+
+// Test Matrix Multiplication - Wrong Size Case 1
+TEST(Multiplication, WrongSizeCase1) {
+    // Throw Exception
+    Matrix m1(2, 3);
+    Matrix m2(2, 2);
+    EXPECT_THROW({
+        try {
+            Matrix m3 = m1 * m2;
+        } catch (const std::invalid_argument& e) {
+            EXPECT_STREQ("Matrix sizes are not compatible", e.what());
+            throw;
+        }
+    }, std::invalid_argument);
+}
+
+// Test Matrix Multiplication - Wrong Size Case 2
+TEST(Multiplication, WrongSizeCase2) {
+    // Throw Exception
+    Matrix m1(2, 3);
+    Matrix m2(3, 3);
+    EXPECT_THROW({
+        try {
+            Matrix m3 = m1 * m2;
+        } catch (const std::invalid_argument& e) {
+            EXPECT_STREQ("Matrix sizes are not compatible", e.what());
+            throw;
+        }
+    }, std::invalid_argument);
 }
 
 // Test Scalar Division

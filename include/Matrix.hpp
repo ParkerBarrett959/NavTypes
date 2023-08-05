@@ -75,6 +75,11 @@ class Matrix {
      * @Outputs:
      */
     void operator=(Matrix mIn) {
+	// Verify Matrices are Same Size
+	if ((mIn.rows() != n_rows_) || (mIn.cols() != n_cols_)) {
+            throw std::invalid_argument("Matrices must be same size");
+	}
+	    
 	// Loop over Elements and Set Value
 	for (int i = 0; i < n_rows_; i++) {
 	    for (int j = 0; j < n_cols_; j++) {
@@ -111,7 +116,12 @@ class Matrix {
      *     mOut: Output Matrix
      */
     Matrix operator+(Matrix mIn) {
-        // Set Output Matrix
+        // Verify Matrices are Same Size
+        if ((mIn.rows() != n_rows_) || (mIn.cols() != n_cols_)) {
+            throw std::invalid_argument("Matrices must be same size");
+        }
+	    
+	// Set Output Matrix
         Matrix mOut(n_rows_, n_cols_);
 
         // Loop over Elements and Add Matrix Elements
@@ -151,7 +161,12 @@ class Matrix {
      *     mOut: Output Matrix
      */
     Matrix operator-(Matrix mIn) {
-        // Set Output Matrix
+        // Verify Matrices are Same Size
+        if ((mIn.rows() != n_rows_) || (mIn.cols() != n_cols_)) {
+            throw std::invalid_argument("Matrices must be same size");
+        }
+	    
+	// Set Output Matrix
         Matrix mOut(n_rows_, n_cols_);
 
         // Loop over Elements and Subtract Matrix Elements
@@ -191,7 +206,12 @@ class Matrix {
      *     mOut: Output Matrix
      */
     Matrix operator*(Matrix mIn) {
-        // Set Output Matrix
+        // Verify Matrices Can be Multiplied
+        if ((mIn.rows() != n_cols_) || (mIn.cols() != n_rows_)) {
+            throw std::invalid_argument("Matrix sizes are not compatible");
+        }
+	    
+	// Set Output Matrix
         Matrix mOut(n_rows_, mIn.cols());
 
         // Loop over Elements and Perform Column-Row  Multiplication
@@ -247,7 +267,7 @@ class Matrix {
         return mOut;
     };
 
-    // TODO: Equality Constructor, Inverse
+    // TODO: Inverse
 
   private:
     // Matrix Class Members
