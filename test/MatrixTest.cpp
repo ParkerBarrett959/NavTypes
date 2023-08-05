@@ -397,3 +397,96 @@ TEST(Transpose, Transpose) {
     EXPECT_EQ(mOut(2, 0), 3);
     EXPECT_EQ(mOut(2, 1), 6);
 }
+
+// Test Matrix Determinant - Zero Matrix
+TEST(Determinant, Zero) {
+    // Construct Matrices
+    Matrix m(0, 0);
+
+    // Compute Determinant
+    double d = m.determinant(m);
+
+    // Assertions
+    ASSERT_EQ(d, 1.0);
+}
+
+// Test Matrix Determinant - 1D Matrix
+TEST(Determinant, OneD) {
+    // Construct Matrices
+    Matrix m(1, 1);
+    m(0, 0) = 2.0;
+
+    // Compute Determinant
+    double d = m.determinant(m);
+
+    // Assertions
+    ASSERT_EQ(d, 2.0);
+}
+
+// Test Matrix Determinant - 2D Matrix
+TEST(Determinant, TwoD) {
+    // Construct Matrices
+    Matrix m(2, 2);
+    m(0, 0) = 3.0;
+    m(0, 1) = 8.0;
+    m(1, 0) = 4.0;
+    m(1, 1) = 6.0;
+
+    // Compute Determinant
+    double d = m.determinant(m);
+
+    // Assertions
+    ASSERT_EQ(d, -14.0);
+}
+
+// Test Matrix Determinant - 3D Matrix
+TEST(Determinant, ThreeD) {
+    // Construct Matrices
+    Matrix m(3, 3);
+    m(0, 0) = 6.0;
+    m(0, 1) = 1.0;
+    m(0, 2) = 1.0;
+    m(1, 0) = 4.0;
+    m(1, 1) = -2.0;
+    m(1, 2) = 5.0;
+    m(2, 0) = 2.0;
+    m(2, 1) = 8.0;
+    m(2, 2) = 7.0;
+
+    // Compute Determinant
+    double d = m.determinant(m);
+
+    // Assertions
+    ASSERT_EQ(d, -306.0);
+}
+
+// Test Matrix Inversion
+/*TEST(Inversion, InvertMatrix) {
+    // Construct Matrix
+    Matrix m(3, 3);
+    m(0, 0) = 1.0;
+    m(0, 1) = 2.0;
+    m(0, 2) = 3.0;
+    m(1, 0) = 4.0;
+    m(1, 1) = 5.0;
+    m(1, 2) = 6.0;
+    m(2, 0) = 7.0;
+    m(2, 1) = 8.0;
+    m(2, 2) = 9.0;
+    
+    // Invert Matrix
+    Matrix mInv = m.inverse();
+
+    // Value Assertions
+    EXPECT_EQ(mInv.rows(), 3);
+    EXPECT_EQ(mInv.cols(), 3);
+    EXPECT_EQ(mInv(0, 0), -2.6666666667);
+    EXPECT_EQ(mInv(0, 1),  2.6666666667);
+    EXPECT_EQ(mInv(0, 2), -1.0);
+    EXPECT_EQ(mInv(1, 0),  3.3333333333);
+    EXPECT_EQ(mInv(1, 1), -4.3333333333);
+    EXPECT_EQ(mInv(1, 2),  2.0);
+    EXPECT_EQ(mInv(2, 0), -1.0);
+    EXPECT_EQ(mInv(2, 1),  2.0);
+    EXPECT_EQ(mInv(2, 2),  1.0);
+}*/

@@ -267,9 +267,117 @@ class Matrix {
         return mOut;
     };
 
-    // TODO: Inverse
+    /* @inverse
+     * @Description: Get matrix inverse
+     * @Inputs:
+     * @Outputs:
+     *     mInv: Matrix inverse result
+     */
+    Matrix inverse() {
+        // Verify Matrix is Square
+        if (n_cols_ != n_rows_) {
+            throw std::invalid_argument("Matrix must be square for inverse");
+        }
+
+        // Calculate Determinant
+	double det = determinant(*this);
+	if (det <= 0.0) {
+            throw std::runtime_error("Matrix is nearly singular. Unable to invert");
+        }
+
+	// Get Adjoint
+	Matrix adj = getCofactor(*this);
+        adj = adj.transpose();
+
+        // Calculate Inverse
+	Matrix mInv = adj / det;
+	return mInv;
+    }
+
+    /* @determinant
+     * @Description: Get Matrix determinant
+     * @Inputs:
+     *     mIn: Input Matrix
+     * @Outputs:
+     *     det: Matrix determinant
+     */
+    double determinant(Matrix mIn) {
+        // Get Matrix Dimensions
+	int dim = mIn.rows();
+
+	// 0-Dimensional Case
+	if (dim == 0) {
+            return 1;
+	}
+
+	// 1-Dimensional Case
+        if (dim == 1) {
+            return mIn(0, 0);
+        }
+
+        // Initialize Values
+	double d = 0.0;
+	int sign = 1;
+
+	// Loop over Elements
+	for (int i = 0; i < dim; i++) {
+            // Assemble Submatrix
+	    Matrix subM(dim-1, dim-1);
+	    for (int m = 1; m < dim; m++) {
+	        int z = 0;
+                for (int n = 0; n < dim; n++) {
+                    if (n != i) {
+                        subM(m-1, z) = mIn(m, n);
+			z++;
+		    }
+	        }	
+	    }
+
+	    // Make Recursive Call
+            d = d + sign * mIn(0, i) * determinant(subM);
+	    sign = -sign;
+	}
+        return d;
+    };
 
   private:
+
+    /* @getCofactor
+     * @Description: Get Matrix Cofactor
+     * @Inputs:
+     *     m - Input Matrix
+     * @Outputs:
+     *     mOut: Output Cofactor Matrix
+     */
+    Matrix getCofactor(Matrix m) {
+        // Initialize Matrices
+	Matrix mOut(m.rows(), m.cols());
+	Matrix subM(m.rows()-1, m.cols()-1);
+
+	// Loop over Elements of Matrix
+	for (int i = 0; i < m.rows(); i++) {
+            for (int j = 0; j < m.cols(); j++) {
+                int p = 0;
+		for(int x = 0; x < m.rows(); x++) {
+                    if (x == i) {
+                        continue;
+		    }
+		    int q = 0;
+		    for (int y = 0; y < m.cols(); y++) {
+                        if (y == j) {
+                            continue;
+			}
+			subM(p, q) = m(x, y);
+			q++;
+		    }
+		    p++;
+		}
+		mOut(i, j) = std::pow(-1, i+j) * determinant(subM);
+	    }
+	}
+	return mOut;
+    };
+
     // Matrix Class Members
     int n_rows_ = 0;
     int n_cols_ = 0;
