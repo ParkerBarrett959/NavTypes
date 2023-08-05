@@ -63,6 +63,21 @@ class Matrix {
      */
     double& operator()(int row, int col) { return m_[row][col]; };
 
+    /* @=
+     * @Description: Matrix equality operator.
+     * @Inputs:
+     *     mIn: Input matrix
+     * @Outputs:
+     */
+    void operator=(Matrix mIn) {
+	// Loop over Elements and Set Value
+	for (int i = 0; i < n_rows_; i++) {
+	    for (int j = 0; j < n_cols_; j++) {
+                m_[i][j] = mIn(i,j);
+	    }
+	}
+    };
+
     /* @+
      * @Description: Matrix scalar addition operator.
      * @Inputs:
@@ -208,7 +223,26 @@ class Matrix {
         return mOut;
     };
 
-    // TODO: Equality Constructor, Transpose, Inverse
+    /* @transpose
+     * @Description: Matrix transpose.
+     * @Inputs:
+     * @Outputs:
+     *     mOut: Output Matrix
+     */
+    Matrix transpose() {
+        // Set Output Matrix
+        Matrix mOut(n_cols_, n_rows_);
+
+        // Loop over Elements and Set Output
+        for (int i = 0; i < n_cols_; i++) {
+            for (int j = 0; j < n_rows_; j++) {
+                mOut(i,j) = m_[j][i];
+            }
+        }
+        return mOut;
+    };
+
+    // TODO: Equality Constructor, Inverse
 
   private:
     // Matrix Class Members

@@ -56,6 +56,23 @@ TEST(Constructor, Args) {
     EXPECT_EQ(m(1, 2), 1.5);
 }
 
+// Test Equality Operator
+TEST(Operator, Equality) {
+    // Construct Matrix
+    Matrix m(2, 3, 1.5);
+
+    // Set New Matrix Equal
+    Matrix mNew = m;
+
+    // Value Assertions
+    EXPECT_EQ(mNew(0, 0), 1.5);
+    EXPECT_EQ(mNew(0, 1), 1.5);
+    EXPECT_EQ(mNew(0, 2), 1.5);
+    EXPECT_EQ(mNew(1, 0), 1.5);
+    EXPECT_EQ(mNew(1, 1), 1.5);
+    EXPECT_EQ(mNew(1, 2), 1.5);
+}
+
 // Test Scalar Add
 TEST(Addition, Scalar) {
     // Construct Initial Matrix
@@ -177,4 +194,29 @@ TEST(Division, Scalar) {
     EXPECT_EQ(m(1, 0), 0.75);
     EXPECT_EQ(m(1, 1), 0.75);
     EXPECT_EQ(m(1, 2), 0.75);
+}
+
+// Test Matrix Transpose
+TEST(Transpose, Transpose) {
+    // Construct Initial Matrix
+    Matrix m(2,3);
+    m(0,0) = 1;
+    m(0,1) = 2;
+    m(0,2) = 3;
+    m(1,0) = 4;
+    m(1,1) = 5;
+    m(1,2) = 6;
+
+    // Transpose Matrix
+    Matrix mOut = m.transpose();
+
+    // Value Assertions
+    EXPECT_EQ(mOut.rows(), 3);
+    EXPECT_EQ(mOut.cols(), 2);
+    EXPECT_EQ(mOut(0, 0), 1);
+    EXPECT_EQ(mOut(0, 1), 4);
+    EXPECT_EQ(mOut(1, 0), 2);
+    EXPECT_EQ(mOut(1, 1), 5);
+    EXPECT_EQ(mOut(2, 0), 3);
+    EXPECT_EQ(mOut(2, 1), 6);
 }
