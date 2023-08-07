@@ -280,7 +280,7 @@ class Matrix {
         }
 
         // Calculate Determinant
-	double det = determinant(*this);
+	double det = determinant();
 	if (det <= 0.0) {
             throw std::runtime_error("Matrix is nearly singular. Unable to invert");
         }
@@ -301,9 +301,9 @@ class Matrix {
      * @Outputs:
      *     det: Matrix determinant
      */
-    double determinant(Matrix mIn) {
+    double determinant() {
         // Get Matrix Dimensions
-	int dim = mIn.rows();
+	int dim = n_rows_;
 
 	// 0-Dimensional Case
 	if (dim == 0) {
@@ -312,7 +312,7 @@ class Matrix {
 
 	// 1-Dimensional Case
         if (dim == 1) {
-            return mIn(0, 0);
+            return m_[0][0];
         }
 
         // Initialize Values
@@ -327,14 +327,14 @@ class Matrix {
 	        int z = 0;
                 for (int n = 0; n < dim; n++) {
                     if (n != i) {
-                        subM(m-1, z) = mIn(m, n);
+                        subM(m-1, z) = m_[m][n];
 			z++;
 		    }
 	        }	
 	    }
 
 	    // Make Recursive Call
-            d = d + sign * mIn(0, i) * determinant(subM);
+            d = d + sign * m_[0][i] * subM.determinant();
 	    sign = -sign;
 	}
         return d;
@@ -372,7 +372,7 @@ class Matrix {
 		    }
 		    p++;
 		}
-		mOut(i, j) = std::pow(-1, i+j) * determinant(subM);
+		mOut(i, j) = std::pow(-1, i+j) * subM.determinant();
 	    }
 	}
 	return mOut;

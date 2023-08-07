@@ -404,7 +404,7 @@ TEST(Determinant, Zero) {
     Matrix m(0, 0);
 
     // Compute Determinant
-    double d = m.determinant(m);
+    double d = m.determinant();
 
     // Assertions
     ASSERT_EQ(d, 1.0);
@@ -417,7 +417,7 @@ TEST(Determinant, OneD) {
     m(0, 0) = 2.0;
 
     // Compute Determinant
-    double d = m.determinant(m);
+    double d = m.determinant();
 
     // Assertions
     ASSERT_EQ(d, 2.0);
@@ -433,7 +433,7 @@ TEST(Determinant, TwoD) {
     m(1, 1) = 6.0;
 
     // Compute Determinant
-    double d = m.determinant(m);
+    double d = m.determinant();
 
     // Assertions
     ASSERT_EQ(d, -14.0);
@@ -454,7 +454,7 @@ TEST(Determinant, ThreeD) {
     m(2, 2) = 7.0;
 
     // Compute Determinant
-    double d = m.determinant(m);
+    double d = m.determinant();
 
     // Assertions
     ASSERT_EQ(d, -306.0);
