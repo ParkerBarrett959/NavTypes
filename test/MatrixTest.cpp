@@ -461,7 +461,7 @@ TEST(Determinant, ThreeD) {
 }
 
 // Test Matrix Inversion
-/*TEST(Inversion, InvertMatrix) {
+TEST(Inversion, InvertMatrix) {
     // Construct Matrix
     Matrix m(3, 3);
     m(0, 0) = 1.0;
@@ -472,7 +472,7 @@ TEST(Determinant, ThreeD) {
     m(1, 2) = 6.0;
     m(2, 0) = 7.0;
     m(2, 1) = 8.0;
-    m(2, 2) = 9.0;
+    m(2, 2) = 8.0;
     
     // Invert Matrix
     Matrix mInv = m.inverse();
@@ -480,13 +480,13 @@ TEST(Determinant, ThreeD) {
     // Value Assertions
     EXPECT_EQ(mInv.rows(), 3);
     EXPECT_EQ(mInv.cols(), 3);
-    EXPECT_EQ(mInv(0, 0), -2.6666666667);
-    EXPECT_EQ(mInv(0, 1),  2.6666666667);
-    EXPECT_EQ(mInv(0, 2), -1.0);
-    EXPECT_EQ(mInv(1, 0),  3.3333333333);
-    EXPECT_EQ(mInv(1, 1), -4.3333333333);
-    EXPECT_EQ(mInv(1, 2),  2.0);
-    EXPECT_EQ(mInv(2, 0), -1.0);
-    EXPECT_EQ(mInv(2, 1),  2.0);
-    EXPECT_EQ(mInv(2, 2),  1.0);
-}*/
+    EXPECT_NEAR(mInv(0, 0), -2.6666666667, 1e-6);
+    EXPECT_NEAR(mInv(0, 1),  2.6666666667, 1e-6);
+    EXPECT_NEAR(mInv(0, 2), -1.0, 1e-6);
+    EXPECT_NEAR(mInv(1, 0),  3.3333333333, 1e-6);
+    EXPECT_NEAR(mInv(1, 1), -4.3333333333, 1e-6);
+    EXPECT_NEAR(mInv(1, 2),  2.0, 1e-6);
+    EXPECT_NEAR(mInv(2, 0), -1.0, 1e-6);
+    EXPECT_NEAR(mInv(2, 1),  2.0, 1e-6);
+    EXPECT_NEAR(mInv(2, 2), -1.0, 1e-6);
+}

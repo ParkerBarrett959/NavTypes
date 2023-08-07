@@ -281,12 +281,12 @@ class Matrix {
 
         // Calculate Determinant
 	double det = determinant();
-	if (det <= 0.0) {
+	if (std::abs(det) <= 1.0e-12) {
             throw std::runtime_error("Matrix is nearly singular. Unable to invert");
         }
 
 	// Get Adjoint
-	Matrix adj = getCofactor(*this);
+	Matrix adj = getCofactor();
         adj = adj.transpose();
 
         // Calculate Inverse
@@ -297,7 +297,6 @@ class Matrix {
     /* @determinant
      * @Description: Get Matrix determinant
      * @Inputs:
-     *     mIn: Input Matrix
      * @Outputs:
      *     det: Matrix determinant
      */
@@ -345,29 +344,28 @@ class Matrix {
     /* @getCofactor
      * @Description: Get Matrix Cofactor
      * @Inputs:
-     *     m - Input Matrix
      * @Outputs:
      *     mOut: Output Cofactor Matrix
      */
-    Matrix getCofactor(Matrix m) {
+    Matrix getCofactor() {
         // Initialize Matrices
-	Matrix mOut(m.rows(), m.cols());
-	Matrix subM(m.rows()-1, m.cols()-1);
+	Matrix mOut(n_rows_, n_cols_);
+	Matrix subM(n_rows_-1, n_cols_-1);
 
 	// Loop over Elements of Matrix
-	for (int i = 0; i < m.rows(); i++) {
-            for (int j = 0; j < m.cols(); j++) {
+	for (int i = 0; i < n_rows_; i++) {
+            for (int j = 0; j < n_cols_; j++) {
                 int p = 0;
-		for(int x = 0; x < m.rows(); x++) {
+		for (int x = 0; x < n_rows_; x++) {
                     if (x == i) {
                         continue;
 		    }
 		    int q = 0;
-		    for (int y = 0; y < m.cols(); y++) {
+		    for (int y = 0; y < n_rows_; y++) {
                         if (y == j) {
                             continue;
 			}
-			subM(p, q) = m(x, y);
+			subM(p, q) = m_[x][y];
 			q++;
 		    }
 		    p++;
