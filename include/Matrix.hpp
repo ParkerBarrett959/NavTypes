@@ -77,7 +77,7 @@ class Matrix {
     };
 
     /* @=
-     * @Description: Matrix equality operator.
+     * @Description: Matrix assignment operator.
      * @Inputs:
      *     mIn: Input matrix
      * @Outputs:
@@ -94,6 +94,29 @@ class Matrix {
                 m_[i][j] = mIn(i,j);
 	    }
 	}
+    };
+
+    /* @==
+     * @Description: Matrix equality operator.
+     * @Inputs:
+     *     mIn: Input matrix
+     * @Outputs:
+     */
+    bool operator==(Matrix mIn) {
+        // Verify Matrices are Same Size
+        if ((mIn.rows() != n_rows_) || (mIn.cols() != n_cols_)) {
+            throw std::invalid_argument("Matrices must be same size");
+        }
+
+        // Loop over Elements and Verify Equal
+        for (int i = 0; i < n_rows_; i++) {
+            for (int j = 0; j < n_cols_; j++) {
+                if (m_[i][j] != mIn(i,j)) {
+                    return false;
+		}
+            }
+        }
+	return true;
     };
 
     /* @+

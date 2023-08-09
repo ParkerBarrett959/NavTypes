@@ -102,7 +102,34 @@ TEST(GetClassValues, GetVals) {
 }
 
 // Test Equality Operator
-TEST(EqualityOperator, SetValue) {
+TEST(EqualityOperator, EqualValues) {
+    // Construct Matrix
+    Matrix m(2, 3, 1.5);
+
+    // Set New Matrix Equal
+    Matrix mNew = m;
+
+    // Value Assertions
+    EXPECT_TRUE(m == mNew);
+}
+
+// Test Equality Operator - Different Sized Matrix Exception
+TEST(EqualityOperator, DifferentSizes) {
+    // Throw Exception
+    Matrix m1(3, 2, 1.0);
+    Matrix m2(2, 3);
+    EXPECT_THROW({
+        try {
+            bool result = (m2 == m1);
+        } catch (const std::invalid_argument& e) {
+            EXPECT_STREQ("Matrices must be same size", e.what());
+            throw;
+        }
+    }, std::invalid_argument);
+}
+
+// Test Assignment Operator
+TEST(AssignmentOperator, SetValue) {
     // Construct Matrix
     Matrix m(2, 3, 1.5);
 
@@ -118,14 +145,14 @@ TEST(EqualityOperator, SetValue) {
     EXPECT_EQ(mNew(1, 2), 1.5);
 }
 
-// Test Equality Operator - Different Sized Matrix Exception
-TEST(EqualityOperator, DifferentSizes) {
+// Test Assignment Operator - Different Sized Matrix Exception
+TEST(AssignmentOperator, DifferentSizes) {
     // Throw Exception
     Matrix m1(3, 2, 1.0);
     Matrix m2(2, 3);
     EXPECT_THROW({
         try {
-            m2 = m1;;
+            m2 = m1;
         } catch (const std::invalid_argument& e) {
             EXPECT_STREQ("Matrices must be same size", e.what());
             throw;
