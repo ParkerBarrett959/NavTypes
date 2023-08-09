@@ -119,6 +119,29 @@ class Matrix {
 	return true;
     };
 
+    /* @!=
+     * @Description: Matrix inequality operator.
+     * @Inputs:
+     *     mIn: Input matrix
+     * @Outputs:
+     */
+    bool operator!=(Matrix mIn) {
+        // Verify Matrices are Same Size
+        if ((mIn.rows() != n_rows_) || (mIn.cols() != n_cols_)) {
+            throw std::invalid_argument("Matrices must be same size");
+        }
+
+        // Loop over Elements and Verify No Equal
+        for (int i = 0; i < n_rows_; i++) {
+            for (int j = 0; j < n_cols_; j++) {
+                if (m_[i][j] != mIn(i,j)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
+
     /* @+
      * @Description: Matrix scalar addition operator.
      * @Inputs:
