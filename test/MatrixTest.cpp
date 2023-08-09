@@ -82,6 +82,25 @@ TEST(Constructor, InvalidCols) {
     }, std::invalid_argument);
 }
 
+// Test Get Matrix Class Values
+TEST(GetClassValues, GetVals) {
+    // Construct Matrix
+    Matrix m(2, 3, 1.5);
+
+    // Get Matrix Values
+    std::vector<std::vector<double>> mVals = m.getElements();
+
+    // Value Assertions
+    EXPECT_EQ(m.rows(), 2);
+    EXPECT_EQ(m.cols(), 3);
+    EXPECT_EQ(mVals[0][0], 1.5);
+    EXPECT_EQ(mVals[0][1], 1.5);
+    EXPECT_EQ(mVals[0][2], 1.5);
+    EXPECT_EQ(mVals[1][0], 1.5);
+    EXPECT_EQ(mVals[1][1], 1.5);
+    EXPECT_EQ(mVals[1][2], 1.5);
+}
+
 // Test Equality Operator
 TEST(EqualityOperator, SetValue) {
     // Construct Matrix

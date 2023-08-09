@@ -53,6 +53,14 @@ class Matrix {
      */
     int rows() { return n_rows_; };
 
+    /* @getElements
+     * @Description: Return Matrix elements as vector.
+     * @Inputs:
+     * @Outputs:
+     *     m_: Matrix elements
+     */
+    std::vector<std::vector<double>> getElements() { return m_; };
+
     /* @()
      * @Description: Return value of array given (row,col) index.
      * @Inputs:
