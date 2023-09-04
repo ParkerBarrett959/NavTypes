@@ -76,48 +76,6 @@ class Matrix {
 	return m_[row][col];
     };
 
-    /* @Matrix
-     * @Description: Matrix initialization operator.
-     * @Inputs:
-     *     vals: Initializer list of matrix values. Left to right, 
-     *           top to bottom.
-     * @Outputs:
-     *     mOut: Output matrix.
-     */
-    Matrix(int n_rows, int n_cols, std::initializer_list<double> vals) {
-        if (n_rows < 0 || n_cols < 0) {
-            throw std::invalid_argument("Row/column size must be greater than zero");
-        }
-
-	// Verify Initializer List is Correct Size
-	if ((n_rows*n_cols) != vals.size()) {
-           throw std::invalid_argument("Invalid initializer list size.");
-        }
-
-	// Set Row/Column Sizes
-	n_rows_ = n_rows;
-        n_cols_ = n_cols;
-        m_.resize(n_rows);
-        for (int i = 0; i < m_.size(); i++) {
-            m_[i].resize(n_cols, 0.0);
-        }
-
-	// Set Matrix Elements
-	int j, k = 0;
-	for (double curr : vals) {
-            // Update Index
-	    if (k >= n_cols_) {
-                j++;
-		k = 0;
-	    } else {
-                k++;
-	    }
-
-	    // Set Value
-	    m_[j][k] = curr;
-	}
-    }
-
     /* @=
      * @Description: Matrix assignment operator.
      * @Inputs:
@@ -136,6 +94,26 @@ class Matrix {
                 m_[i][j] = mIn(i,j);
 	    }
 	}
+    };
+
+    /* @<<
+     * @Description: Matrix assignment operator.
+     * @Inputs:
+     *     vals: Input matrix, left to right, top to bottom
+     * @Outputs:
+     */
+    void operator<<(std::vector<double> vals) {
+        // Verify Matrices are Same Size
+        if (vals.size() != n_rows_*n_cols_) {
+            throw std::invalid_argument("Matrices must be same size");
+        }
+
+        // Loop over Elements and Set Value
+        for (int i = 0; i < n_rows_; i++) {
+            for (int j = 0; j < n_cols_; j++) {
+                m_[i][j] = vals[(i*n_cols_)+j];
+            }
+        }
     };
 
     /* @==

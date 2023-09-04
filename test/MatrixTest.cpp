@@ -101,18 +101,37 @@ TEST(GetClassValues, GetVals) {
     EXPECT_EQ(mVals[1][2], 1.5);
 }
 
-// Test Equality Initializer List Operator
-TEST(EqualityOperator, InitializerList) {
-    // Construct Matrix
-    Matrix m(2, 3, {1.0, 2.0, 3.0, 4.0, 5.0, 6.0});
+// Test Assignment Operator
+TEST(AssignmentOperator, InvalidInputSize) {
+    // Throw Exception
+    Matrix m(2, 3);
+    std::vector<double> vals{1.0, 2.0, 3.0};
+    EXPECT_THROW({
+        try {
+            m << vals;
+        } catch (const std::invalid_argument& e) {
+            EXPECT_STREQ("Matrices must be same size", e.what());
+            throw;
+        }
+    }, std::invalid_argument);
+}
 
-    // Value Assertions
-    /*EXPECT_EQ(m(0,0), 1.0);
-    EXPECT_EQ(m(0,1), 2.0);
-    EXPECT_EQ(m(0,2), 3.0);
-    EXPECT_EQ(m(1,0), 4.0);
-    EXPECT_EQ(m(1,1), 5.0);
-    EXPECT_EQ(m(1,2), 6.0);*/
+// Test Assignment Operator
+TEST(AssignmentOperator, SetValues) {
+    // Initialize Values
+    Matrix m(2, 3);
+    std::vector<double> vals{1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
+
+    // Call Assignment Operator
+    m << vals;
+
+    // Check Matrix Values
+    EXPECT_EQ(m(0, 0), 1.0);
+    EXPECT_EQ(m(0, 1), 2.0);
+    EXPECT_EQ(m(0, 2), 3.0);
+    EXPECT_EQ(m(1, 0), 4.0);
+    EXPECT_EQ(m(1, 1), 5.0);
+    EXPECT_EQ(m(1, 2), 6.0);
 }
 
 // Test Equality Operator
