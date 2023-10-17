@@ -20,13 +20,17 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 # Add Header List
-set(HEADER_LIST ${PROJECT_SOURCE_DIR}/include/Quaternion.hpp)
+set(HEADER_LIST ${PROJECT_SOURCE_DIR}/include/Quaternion.hpp
+	        ${PROJECT_SOURCE_DIR}/include/Matrix.hpp
+		${PROJECT_SOURCE_DIR}/include/DirectionCosinesMatrix.hpp)
 
 # Unit Testing Build
 enable_testing()
 add_executable( test_navtypes ${PROJECT_SOURCE_DIR}/test/testMain.cpp 
 	                      ${PROJECT_SOURCE_DIR}/test/QuaternionTest.cpp
-			      ${PROJECT_SOURCE_DIR}/test/MatrixTest.cpp ${HEADER_LIST})
+			      ${PROJECT_SOURCE_DIR}/test/MatrixTest.cpp
+			      ${PROJECT_SOURCE_DIR}/test/DirectionCosinesMatrixTest.cpp ${HEADER_LIST})
+
 target_link_libraries(
   test_navtypes
   GTest::gtest_main
